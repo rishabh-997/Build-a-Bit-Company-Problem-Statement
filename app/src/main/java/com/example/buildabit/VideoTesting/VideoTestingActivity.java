@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -82,10 +83,28 @@ public class VideoTestingActivity extends AppCompatActivity
         seek.setOnClickListener(v ->
         progressBar.setVisibility(View.VISIBLE));
         new Handler().postDelayed(() -> {
+            String se=search_result.toString().toLowerCase();
+
             progressBar.setVisibility(View.GONE);
-            container.seekTo(10000);
-            container.start();
+            ListIterator<Pair<String,String>>
+                    iterator = list.listIterator(0);
+            while (iterator.hasNext()) {
+                String x=iterator.next().first;
+                String time=iterator.next().second;
+                if(x.equals(se)){
+                    container.seekTo(Integer.parseInt(time));
+                    container.start();
+                    break;
+                }
+
+            }
+
+
         },2000);
+
+
+
+
     }
     public void getSpeechInput(View view) {
 
