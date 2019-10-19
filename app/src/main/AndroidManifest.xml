@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"
+        <activity android:name=".MainActivity.MainActivity"
             android:label="video Player"
             android:screenOrientation="portrait"/>
     </application>

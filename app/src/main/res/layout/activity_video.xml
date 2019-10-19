@@ -4,18 +4,49 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <VideoView
         android:id="@+id/videoview"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_margin="12dp" />
 
+    <TextView
+        android:id="@+id/token"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:layout_below="@id/videoview"
+        android:layout_margin="12dp"
+        android:gravity="center"
+        android:text="topics"
+        android:visibility="gone" />
+
     <Button
+        android:id="@+id/seek_button"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@id/token"
+        android:layout_centerHorizontal="true"
+        android:text="seek"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="seekto"
+        android:layout_below="@id/seek_button"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/btnSpeak"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:id="@+id/seekto"/>
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:onClick="getSpeechInput"
+        android:src="@drawable/ic_mic" />
 
 </RelativeLayout>

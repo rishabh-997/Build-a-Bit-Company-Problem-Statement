@@ -1,4 +1,4 @@
-package com.example.buildabit;
+package com.example.buildabit.MainActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.buildabit.R;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -21,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txvResult = (TextView) findViewById(R.id.txvResult);
+
+
+
+
     }
 
     public void getSpeechInput(View view) {
