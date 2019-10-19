@@ -21,6 +21,14 @@
             android:label="video Player"
             android:theme="@style/AppTheme2"
             android:screenOrientation="portrait"/>
+        <activity android:name=".VideoTesting.VideoTestingActivity2"
+            android:label="video Player"
+            android:theme="@style/AppTheme2"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VideoTesting.VideoTestingActivity3"
+            android:label="video Player"
+            android:theme="@style/AppTheme2"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

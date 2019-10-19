@@ -1,5 +1,10 @@
 package com.example.buildabit.VideoTesting;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,9 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.buildabit.DataPojo;
 import com.example.buildabit.R;
 import com.google.firebase.database.DataSnapshot;
@@ -23,15 +26,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+public class VideoTestingActivity3 extends AppCompatActivity {
 
-public class VideoTestingActivity extends AppCompatActivity
-{
     @BindView(R.id.videoview)
     VideoView container;
     @BindView(R.id.token)
@@ -51,7 +55,7 @@ public class VideoTestingActivity extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video);
+        setContentView(R.layout.activity_video_testing3);
         ButterKnife.bind(this);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("1");
@@ -72,17 +76,13 @@ public class VideoTestingActivity extends AppCompatActivity
 
             }
         });
-        relativeLayout.setOnTouchListener(new OnSwipeTouchListener(VideoTestingActivity.this){
+  relativeLayout.setOnTouchListener(new OnSwipeTouchListener(VideoTestingActivity3.this){
+      public void onSwipeLeft() {
+          startActivity(new Intent(VideoTestingActivity3.this,VideoTestingActivity2.class));
+      }
 
-
-            public void onSwipeLeft() {
-                //Toast.makeText(VideoTestingActivity.this, "vgvg", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(VideoTestingActivity.this,VideoTestingActivity2.class));
-                //  finish();
-            }
         });
-
-        mediaController = new MyMediaController(this);
+        mediaController = new MediaController(this);
         container.setMediaController(mediaController);
         mediaController.setAnchorView(container);
         uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sample);
@@ -96,24 +96,12 @@ public class VideoTestingActivity extends AppCompatActivity
                 String searched_result=search_result.getText().toString().toLowerCase();
                 progressBar.setVisibility(View.GONE);
 
-                int check = 0;
-                for(int i = 0; i < list.size(); i++)
-                {
+                for(int i = 0; i < list.size(); i++){
                     if(searched_result.toLowerCase().trim().contains(list.get(i).getTag().toString().toLowerCase())){
-                        Toast.makeText(VideoTestingActivity.this, list.get(i).getTime(), Toast.LENGTH_SHORT).show();
+                    //    Toast.makeText(VideoTestingActivity.this, list.get(i).getTime(), Toast.LENGTH_SHORT).show();
                         container.seekTo(Integer.parseInt(list.get(i).getTime()));
-                        check = 1;
                         break;
                     }
-                }
-                if(check==0)
-                {
-                    Toast.makeText(VideoTestingActivity.this, "Sorry ! No Result Found", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    seek.setVisibility(View.GONE);
-                    search_result.setVisibility(View.GONE);
                 }
             }
         });
@@ -130,6 +118,14 @@ public class VideoTestingActivity extends AppCompatActivity
             Toast.makeText(this, "Your Device Don't Support Speech Input", Toast.LENGTH_SHORT).show();
         }
     }
+//    OnSwipeTouchListener onSwipeTouchListener = new OnSwipeTouchListener(VideoTestingActivity3.this) {
+//        @Override
+//        public void onSwipeLeft() {
+//            startActivity(new Intent(VideoTestingActivity3.this,VideoTestingActivity2.class));
+//        }
+//    };
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
