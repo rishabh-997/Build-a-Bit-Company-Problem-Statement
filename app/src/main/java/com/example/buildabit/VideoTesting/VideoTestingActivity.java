@@ -2,6 +2,7 @@ package com.example.buildabit.VideoTesting;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.VideoView;
@@ -17,13 +18,10 @@ import butterknife.ButterKnife;
 
 public class VideoTestingActivity extends AppCompatActivity
 {
-    @BindView(R.id.button)
-    Button play_button;
-
     @BindView(R.id.videoview)
     VideoView container;
-
-
+    @BindView(R.id.seekto)
+    Button seekto;
 
     MediaController mediaController;
     Uri uri;
@@ -40,6 +38,19 @@ public class VideoTestingActivity extends AppCompatActivity
         uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sample);
 
         container.setVideoURI(uri);
+        container.start();
+
+        seekto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seekToPosition();
+            }
+        });
+    }
+
+    private void seekToPosition()
+    {
+        container.seekTo(50000);
         container.start();
     }
 }
