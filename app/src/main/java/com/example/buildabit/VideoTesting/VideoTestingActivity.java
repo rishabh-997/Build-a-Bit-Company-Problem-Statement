@@ -11,9 +11,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buildabit.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class VideoTestingActivity extends AppCompatActivity
 {
+    @BindView(R.id.button)
+    Button play_button;
+
+    @BindView(R.id.videoview)
+    VideoView container;
+
+
 
     MediaController mediaController;
     Uri uri;
@@ -22,8 +32,7 @@ public class VideoTestingActivity extends AppCompatActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
-        VideoView container=findViewById(R.id.videoview);
-        Button play_button=findViewById(R.id.button);
+        ButterKnife.bind(this);
 
         mediaController = new MediaController(this);
         mediaController.setAnchorView(container);
@@ -32,6 +41,5 @@ public class VideoTestingActivity extends AppCompatActivity
 
         container.setVideoURI(uri);
         container.start();
-
     }
 }
