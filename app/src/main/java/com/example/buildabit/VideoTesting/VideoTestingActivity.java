@@ -59,6 +59,7 @@ public class VideoTestingActivity extends AppCompatActivity
         mediaController.setAnchorView(container);
         uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sample);
         container.setVideoURI(uri);
+        container.setMediaController(mediaController);
         container.start();
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("1");
@@ -93,6 +94,7 @@ public class VideoTestingActivity extends AppCompatActivity
                 String time=iterator.next().second;
                 if(x.equals(se)){
                     container.seekTo(Integer.parseInt(time));
+                    container.setMediaController(mediaController);
                     container.start();
                     break;
                 }
