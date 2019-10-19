@@ -1,5 +1,6 @@
 package com.example.buildabit.VideoTesting;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.MediaController;
@@ -22,6 +23,7 @@ public class VideoTestingActivity extends AppCompatActivity
     VideoView container;
 
     MediaController mediaController;
+    Uri uri;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +33,11 @@ public class VideoTestingActivity extends AppCompatActivity
 
         mediaController = new MediaController(this);
         mediaController.setAnchorView(container);
+
+        uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sample);
+
+        container.setVideoURI(uri);
+        container.start();
 
     }
 }
