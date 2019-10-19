@@ -85,7 +85,7 @@ public class VideoTestingActivity extends AppCompatActivity
                 progressBar.setVisibility(View.GONE);
 
                 for(int i = 0; i < list.size(); i++){
-                    if(list.get(i).getTag().trim().equals(searched_result.trim())){
+                    if(searched_result.toLowerCase().trim().contains(list.get(i).getTag().toString().toLowerCase())){
                         Toast.makeText(VideoTestingActivity.this, list.get(i).getTime(), Toast.LENGTH_SHORT).show();
                         container.seekTo(Integer.parseInt(list.get(i).getTime()));
                         break;
