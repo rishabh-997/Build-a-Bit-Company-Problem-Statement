@@ -70,7 +70,7 @@ public class VideoTestingActivity extends AppCompatActivity
             }
         });
 
-        mediaController = new MediaController(this);
+        mediaController = new MyMediaController(this);
         container.setMediaController(mediaController);
         mediaController.setAnchorView(container);
         uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sample);
@@ -84,12 +84,24 @@ public class VideoTestingActivity extends AppCompatActivity
                 String searched_result=search_result.getText().toString().toLowerCase();
                 progressBar.setVisibility(View.GONE);
 
-                for(int i = 0; i < list.size(); i++){
+                int check = 0;
+                for(int i = 0; i < list.size(); i++)
+                {
                     if(searched_result.toLowerCase().trim().contains(list.get(i).getTag().toString().toLowerCase())){
                         Toast.makeText(VideoTestingActivity.this, list.get(i).getTime(), Toast.LENGTH_SHORT).show();
                         container.seekTo(Integer.parseInt(list.get(i).getTime()));
+                        check = 1;
                         break;
                     }
+                }
+                if(check==0)
+                {
+                    Toast.makeText(VideoTestingActivity.this, "Sorry ! No Result Found", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    seek.setVisibility(View.GONE);
+                    search_result.setVisibility(View.GONE);
                 }
             }
         });

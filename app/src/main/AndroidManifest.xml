@@ -7,9 +7,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".VideoTesting.VideoTestingActivity">
+        android:supportsRtl="true">
+        <activity android:name=".VideoTesting.VideoTestingActivity"
+            android:theme="@style/AppTheme2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,6 +19,7 @@
 
         <activity android:name=".MainActivity.MainActivity"
             android:label="video Player"
+            android:theme="@style/AppTheme2"
             android:screenOrientation="portrait"/>
     </application>
 
