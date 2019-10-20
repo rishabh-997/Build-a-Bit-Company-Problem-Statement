@@ -42,6 +42,10 @@ public class VideoTestingActivity extends AppCompatActivity
     ProgressBar progressBar;
     @BindView(R.id.id3)
     RelativeLayout relativeLayout;
+    @BindView(R.id.image1)
+    TextView image1;
+    @BindView(R.id.image2)
+    TextView image2;
 
     MediaController mediaController;
     Uri uri;
@@ -54,7 +58,7 @@ public class VideoTestingActivity extends AppCompatActivity
         setContentView(R.layout.activity_video);
         ButterKnife.bind(this);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("1");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("first");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
@@ -78,14 +82,13 @@ public class VideoTestingActivity extends AppCompatActivity
             public void onSwipeLeft() {
                 //Toast.makeText(VideoTestingActivity.this, "vgvg", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(VideoTestingActivity.this,VideoTestingActivity2.class));
-                //  finish();
             }
         });
 
         mediaController = new MyMediaController(this);
         container.setMediaController(mediaController);
         mediaController.setAnchorView(container);
-        uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sample);
+        uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.first);
         container.setVideoURI(uri);
         container.start();
 
@@ -117,6 +120,21 @@ public class VideoTestingActivity extends AppCompatActivity
                 }
             }
         });
+
+        image1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                container.seekTo(22000);
+                container.start();
+            }
+        });
+        image2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                container.seekTo(114000);
+                container.start();
+            }
+        });
     }
     public void getSpeechInput(View view) {
 
@@ -130,6 +148,7 @@ public class VideoTestingActivity extends AppCompatActivity
             Toast.makeText(this, "Your Device Don't Support Speech Input", Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

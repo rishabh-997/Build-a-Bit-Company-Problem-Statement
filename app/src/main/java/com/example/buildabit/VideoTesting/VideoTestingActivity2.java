@@ -57,7 +57,7 @@ public class VideoTestingActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_video_testing2);
         ButterKnife.bind(this);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("1");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("second");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
@@ -76,13 +76,12 @@ public class VideoTestingActivity2 extends AppCompatActivity {
             }
         });
         relativeLayout.setOnTouchListener(new OnSwipeTouchListener(VideoTestingActivity2.this){
-            public void onSwipeLeft() {
-                startActivity(new Intent(VideoTestingActivity2.this,VideoTestingActivity.class));
-            }
 
             public void onSwipeRight() {
-                startActivity(new Intent(VideoTestingActivity2.this,VideoTestingActivity3.class));
-              //  finish();
+                onBackPressed();
+            }
+            public void onSwipeLeft() {
+                onBackPressed();
             }
         });
 
@@ -123,17 +122,6 @@ public class VideoTestingActivity2 extends AppCompatActivity {
             Toast.makeText(this, "Your Device Don't Support Speech Input", Toast.LENGTH_SHORT).show();
         }
     }
-//    OnSwipeTouchListener onSwipeTouchListener = new OnSwipeTouchListener(VideoTestingActivity2.this) {
-//        @Override
-//        public void onSwipeLeft() {
-//            startActivity(new Intent(VideoTestingActivity2.this,VideoTestingActivity.class));
-//        }
-//
-//        @Override
-//        public void onSwipeRight() {
-//            startActivity(new Intent(VideoTestingActivity2.this,VideoTestingActivity.class));
-//        }
-//    };
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -58,7 +58,7 @@ public class VideoTestingActivity3 extends AppCompatActivity {
         setContentView(R.layout.activity_video_testing3);
         ButterKnife.bind(this);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("1");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("second");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
@@ -85,7 +85,7 @@ public class VideoTestingActivity3 extends AppCompatActivity {
         mediaController = new MediaController(this);
         container.setMediaController(mediaController);
         mediaController.setAnchorView(container);
-        uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sample);
+        uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.first);
         container.setVideoURI(uri);
         container.start();
 
